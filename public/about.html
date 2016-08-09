@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	<head> 
+		<link href="mycss.css" rel="stylesheet" media = "screen">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<body>
+		<div class="header">
+			<p>Beacon SetUp Page</p>
+		</div>
+		<div class="wrapper">
+			<form id = "hmpage" action="/resetdatabase" method="POST">
+				<p class="data">Please press the button below to reset the database before setting up the beacons</p>
+				<button id ="reset">Reset</button>
+			</form>
+			<form id = "homepage" action="/insertdata" method="POST">
+				<p class="data">Please enter the following info to set up the beacons</p>
+				<table align="center">
+					<tr>
+						<td align="left" class="data">Name:</td>
+						<td><input type="text" name="bname" placeholder="Beacon name"/></td>
+					</tr>
+					<tr>
+						<td align="left" class="data">Alias:</td>
+						<td><input type="text" name="balias" placeholder="2/3 characters"/></td>
+					</tr>
+					<tr>
+						<td align="left" class="data">Location:</td>
+						<td><input type="text" name="bloc" placeholder="Building/Room No.."/></td>
+					</tr>
+				</table>
+				<br>
+				<br>
+				<button id ="checkin">Save</button><br><br>
+			</form>
+			<form id = "bpage" action="/beacons" method="POST">
+				<button id ="beacons">View Beacons</button>
+			</form>
+		</div>
+		<div class="footer">
+		Developed by DDSLab Team
+		</div>
+	</body>
+</html>

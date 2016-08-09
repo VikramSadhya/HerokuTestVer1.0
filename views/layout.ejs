@@ -5,23 +5,25 @@
     </head>
 <body>
     <div class="header">
-        <h2>Summary of data received from Beacons</h2>
+        <h2>Summary of Beacons Set Up</h2>
     </div>
     <div class="wrapper">
     <table id="tabledata">  
         <thead text-align="center">  
             <tr>  
-                <th>Beacon ID</th>  
-                <th>Status</th>  
-                <th>Activity Timestamp</th>  
+                <th id="tblheader">Beacon ID</th>  
+                <th id="tblheader">Name</th>
+                <th id="tblheader">Alia</th>   
+                <th id="tblheader">Location</th>  
             </tr>  
         </thead>  
          <tbody>  
          <% checkin.forEach(function (checkin) { %>
             <tr>  
-                <td><%= checkin.url %></td>  
-                <td><%= checkin.status %></td>
-                <td><%= checkin.datetimelastupdated %></td>
+                <td id="tbldata"><%= checkin.bid %></td>  
+                <td id="tbldata"><%= checkin.bname %></td>
+                <td id="tbldata"><%= checkin.balias %></td>
+                <td id="tbldata"><%= checkin.location %></td>
             
             </tr>                                   
          <% }) %>
