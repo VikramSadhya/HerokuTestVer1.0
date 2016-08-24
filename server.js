@@ -45,7 +45,6 @@ app.post('/resetdatabase', function (req, res) {
           res.sendFile(__dirname + '/public/about.html');                
         }
     });
-  connection.release();
 });
 
 app.post('/insertdata', function(req,res){
@@ -61,7 +60,6 @@ app.post('/insertdata', function(req,res){
           res.sendFile(__dirname + '/public/about.html');                
         }
     });
-  connection.release();
 });
 
 app.set('view engine', 'ejs');
