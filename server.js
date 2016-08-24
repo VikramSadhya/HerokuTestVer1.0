@@ -42,7 +42,8 @@ app.post('/resetdatabase', function (req, res) {
     if(err){
         throw err;
       } else {
-          res.sendFile(__dirname + '/public/about.html');                
+          res.sendFile(__dirname + '/public/about.html');
+          connection.release();                
         }
     });
 });
