@@ -43,7 +43,6 @@ app.post('/resetdatabase', function (req, res) {
         throw err;
       } else {
           res.sendFile(__dirname + '/public/about.html');
-          connection.release();                
         }
     });
 });
@@ -76,6 +75,20 @@ app.post('/beacons', function(req, res){
     }
   });
 });
+
+
+app.post('/refresh', function(req, res){
+  handle_database();
+  pool.query('SELECT * FROM beacon', function(err, result) {
+    if(err){
+      throw err;
+    } else {
+      obj = {checkin: result};
+      res.render('layout', obj);                
+    }
+  });
+});
+
 
 app.listen(port, function(err, req, res){
   if (err){
