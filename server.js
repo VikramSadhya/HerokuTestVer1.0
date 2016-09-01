@@ -76,20 +76,6 @@ app.post('/beacons', function(req, res){
   });
 });
 
-
-app.post('/refresh', function(req, res){
-  handle_database();
-  pool.query('SELECT * FROM beacon', function(err, result) {
-    if(err){
-      throw err;
-    } else {
-      obj = {checkin: result};
-      res.render('layout', obj);                
-    }
-  });
-});
-
-
 app.listen(port, function(err, req, res){
   if (err){
     console.log("Failed to start app at port:%s", port);
