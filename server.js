@@ -5,6 +5,10 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var favicon = require('express-favicon');
 
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 var port = Number(process.env.PORT || 5000);
 
 var pool = mysql.createPool({
@@ -27,10 +31,6 @@ function handle_database(req,res) {
         }
         });
   };
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static('public'));
-app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/about.html');
