@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
-var port = Number(process.env.PORT || 5000);
+var port = Number(process.env.PORT || 8000);
 
 var pool = mysql.createPool({
 host:'uoa25ublaow4obx5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
