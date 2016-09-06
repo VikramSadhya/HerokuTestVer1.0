@@ -17,56 +17,50 @@ user:'bikjev1qj9iiyqo8',
 password:'npkb2rqdf9m6rdfq',
 database:'s3zaxupkdhjfrv79',
 port: 3306,
-connectionLimit: 100
+connectionLimit: 10
 });
 
-function handle_database(req,res) {
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          console.log('Database Connection failed');
-          return;
-        } else {
-          console.log('Connected to database'); 
-        }
-        });
-  };
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/about.html');
 });
 
 app.post('/resetdatabase', function (req, res) {
-  handle_database();
-  pool.query('TRUNCATE table beacon', function(err) {
+  pool.getConnection(function(err,connection){
+  connection.query('TRUNCATE table beacon', function(err) {
     if(err){
         throw err;
       } else {
           res.sendFile(__dirname + '/public/about.html');
         }
     });
+  connection.release();
+});
 });
 
 app.post('/insertdata', function(req,res){
- handle_database();
+ pool.getConnection(function(err,connection){
   var data ={ bname: req.body.bname,
       balias: req.body.balias,
       location: req.body.bloc
   };
-  pool.query('INSERT INTO beacon SET ?', data, function(err) {
+  connection.query('INSERT INTO beacon SET ?', data, function(err) {
     if(err){
         throw err;
       } else {
           res.sendFile(__dirname + '/public/about.html');                
         }
     });
+  connection.release();
+});
 });
 
 app.set('view engine', 'ejs');
 var obj = {};
+
 app.post('/beacons', function(req, res){
-  handle_database();
-  pool.query('SELECT * FROM beacon', function(err, result) {
+  pool.getConnection(function(err,connection){
+  connection.query('SELECT * FROM beacon', function(err, result) {
     if(err){
       throw err;
     } else {
@@ -74,6 +68,8 @@ app.post('/beacons', function(req, res){
       res.render('layout', obj);                
     }
   });
+  connection.release();
+});
 });
 
 app.listen(port, function(err, req, res){
